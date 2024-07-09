@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1025830323374",
+    "project_id": "electronic-equipment-a4797",
+    "storage_bucket": "electronic-equipment-a4797.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025830323374:android:5c763cb1a69696df86d93f",
+        "android_client_info": {
+          "package_name": "com.device_management"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnmoyJLYB6mWZtGIZrqyq7R-guZl9Etmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
