@@ -36,7 +36,7 @@ const useMyContextController = () => {
 };
 const USERS = firestore().collection('USERS');
 
-const createAccount = (email, password, fullname, phone, role) => {
+const createAccount = (email, password, fullname, phone, room, role) => {
   auth()
     .createUserWithEmailAndPassword(email, password)
     .then(() => {
@@ -46,6 +46,7 @@ const createAccount = (email, password, fullname, phone, role) => {
         password,
         fullname,
         phone,
+        room,
         role,
       });
     })
@@ -57,10 +58,8 @@ const login = (dispatch, email, password) => {
     .then(() => {
       USERS.doc(email).onSnapshot(async u => {
         if (u.exists) {
+          const userData = u.data();
           Alert.alert('Đăng nhập thành công với ' + u.id);
-          // const userData = u.data();
-          // await AsyncStorage.setItem('user', JSON.stringify(userData));
-          // console.log(userData);
           dispatch({type: 'USER_LOGIN', value: userData});
         }
       });
@@ -71,7 +70,12 @@ const login = (dispatch, email, password) => {
 const logout = dispatch => {
   auth()
     .signOut()
-    .then(() => dispatch({type: 'USER_LOGOUT'}));
+    .then(() => {
+      dispatch({ type: 'USER_LOGOUT' });
+    })
+    .catch(error => {
+      console.error('Error logging out: ', error);
+    });
 };
 const DEVICES = firestore().collection('DEVICES');
 const addDevices = (
@@ -127,7 +131,7 @@ const addRoom = (roomName, describe, note) => {
     .catch(e => console.log(e.message));
 };
 
-const REPORT = firestore().collection('REPORT');
+const REPORT = firestore().collection('ERROR');
 
 export {
   MyContextControllerProvider,
